@@ -82,6 +82,7 @@ _(Add a few GIFs or images of pets being spawned, renamed, or doing tricks here 
 
 ## 🔐 License
 
+This script is for demo/showcase purposes only.
 Feel free to fork or use with credit. Do not resell or redistribute as your own.
 
 ---
