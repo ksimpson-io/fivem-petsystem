@@ -105,7 +105,7 @@ function DBPet:save(removed)
         }
     end
 
-    TriggerClientEvent("frudy-pets:client:petSaved", -1, self.owner, self.id, PlayerPets[self.owner][self.id])
+    TriggerClientEvent("frudy_pets:client:petSaved", -1, self.owner, self.id, PlayerPets[self.owner][self.id])
 end
 
 ---@param petId number

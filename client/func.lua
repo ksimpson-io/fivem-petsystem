@@ -18,7 +18,7 @@ end
 ---@param citizenid string
 GetOwnedPets = function(citizenid)
     if not PlayerPets[citizenid] then
-        PlayerPets[citizenid] = lib.callback.await("frudy-pets:server:GetPlayerPets", false, citizenid)
+        PlayerPets[citizenid] = lib.callback.await("frudy_pets:server:GetPlayerPets", false, citizenid)
     end
 
     return PlayerPets[citizenid]
@@ -203,7 +203,7 @@ end
 CreateStoreZone = function()
     local storeCoords = (Config.PetStore.Location) or (Config.PetStore.Peds.cashier.pos) or (Config.PetStore.Peds.vet.pos)
     if (not storeCoords) then
-        lib.print.debug("frudy-pets::CreateStoreZone - No coords set for store zone")
+        lib.print.debug("frudy_pets::CreateStoreZone - No coords set for store zone")
         return
     end
 

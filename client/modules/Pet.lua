@@ -106,7 +106,7 @@ function Pet:spawn()
 
     self:follow()
 
-    TriggerServerEvent("frudy-pets:server:petSpawned", self.id)
+    TriggerServerEvent("frudy_pets:server:petSpawned", self.id)
 end
 
 function Pet:delete()
@@ -126,7 +126,7 @@ function Pet:sendHome()
     self:clearTasks()
 	QBCore.Functions.Notify("Go home!", "success")
 	TriggerEvent('animations:client:EmoteCommandStart', { "blowkiss2" })
-	TriggerServerEvent("frudy-pets:server:removePet", self.id)
+	TriggerServerEvent("frudy_pets:server:removePet", self.id)
 	self:delete()
 end
 
@@ -275,7 +275,7 @@ function Pet:feed(foodtype)
     QBCore.Functions.Notify(self.name .. " " .. " fed", "success")
 
     self:follow()
-    TriggerServerEvent('frudy-pets:server:updatePet', self.id, { hunger = 100, health = math.min(self.health + 25, 100) })
+    TriggerServerEvent('frudy_pets:server:updatePet', self.id, { hunger = 100, health = math.min(self.health + 25, 100) })
 end
 
 function Pet:startFetch()
@@ -380,7 +380,7 @@ end
 function Pet:changeCollar(color)
     if (not self.entity) then return end
     SetPedComponentVariation(self.entity, self.collarComponent, 0, color, 0)
-    TriggerServerEvent('frudy-pets:server:updatePet', self.id, {collar = color})
+    TriggerServerEvent('frudy_pets:server:updatePet', self.id, {collar = color})
 end
 
 function Pet.get(petId)
@@ -426,7 +426,7 @@ function Pet:addTarget()
     else
         exports["mc9-interact"]:AddEntityInteraction({
             netId = NetworkGetNetworkIdFromEntity(self.entity),
-            id = "frudy-pets::petActions",
+            id = "frudy_pets::petActions",
             distance = 2.0,
             interactDst = 1.5,
             offset = vec3(0.0, 0.0, 0.3),
@@ -456,7 +456,7 @@ function Pet:removeTarget()
     if Config.UseTarget then
         exports.ox_target:removeEntity(self.entity)
     else
-        exports["mc9-interact"]:RemoveEntityInteraction(NetworkGetNetworkIdFromEntity(self.entity),"frudy-pets::petActions")
+        exports["mc9-interact"]:RemoveEntityInteraction(NetworkGetNetworkIdFromEntity(self.entity),"frudy_pets::petActions")
     end
 end
 

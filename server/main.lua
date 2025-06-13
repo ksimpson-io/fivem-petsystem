@@ -80,7 +80,7 @@ AddEventHandler('playerDropped', function()
 end)
 
 ---@param petId number
-RegisterNetEvent("frudy-pets:server:petSpawned", function(petId)
+RegisterNetEvent("frudy_pets:server:petSpawned", function(petId)
 	local src = source
 	local owner = QBCore.Functions.GetPlayer(src)
 	if (not owner) then return end
@@ -90,18 +90,18 @@ RegisterNetEvent("frudy-pets:server:petSpawned", function(petId)
 	CurrentPets[petId] = DBPet:new(petCfg)
 	CurrentPets[petId]:decay()
 
-	TriggerClientEvent("frudy-pets:client:petSpawned", -1, petCfg)
+	TriggerClientEvent("frudy_pets:client:petSpawned", -1, petCfg)
 end)
 
 ---@param petId number
-RegisterNetEvent("frudy-pets:server:removePet", function(petId)
+RegisterNetEvent("frudy_pets:server:removePet", function(petId)
 	CurrentPets[petId]:remove()
 	CurrentPets[petId] = nil
 end)
 
 ---@param petId number
 ---@param stats table
-RegisterNetEvent("frudy-pets:server:updatePet", function(petId, stats)
+RegisterNetEvent("frudy_pets:server:updatePet", function(petId, stats)
 	local pet = DBPet.get(petId)
 	if (not pet) then return end
 
@@ -114,7 +114,7 @@ end)
 
 ---@param petId number
 ---@param name string
-RegisterNetEvent('frudy-pets:server:renamePet', function(petId, name)
+RegisterNetEvent('frudy_pets:server:renamePet', function(petId, name)
 	local owner = QBCore.Functions.GetPlayer(source)
 	local pet = DBPet.get(petId)
 	if (not owner) or (not pet) then return end
@@ -126,7 +126,7 @@ end)
 
 ---@param petId number
 ---@param health number
-RegisterNetEvent('frudy-pets:server:healPet', function(petId, health)
+RegisterNetEvent('frudy_pets:server:healPet', function(petId, health)
 	local owner = QBCore.Functions.GetPlayer(source)
 	local pet = DBPet.get(petId)
 	if (not owner) or (not pet) then return end
@@ -142,7 +142,7 @@ end)
 
 ---@param payment string
 ---@param petCode string
-RegisterNetEvent('frudy-pets:server:buyPet', function(payment, petCode)
+RegisterNetEvent('frudy_pets:server:buyPet', function(payment, petCode)
 	local src = source
 	local buyer = QBCore.Functions.GetPlayer(src)
 	if (not buyer) then return end
@@ -170,7 +170,7 @@ RegisterNetEvent('frudy-pets:server:buyPet', function(payment, petCode)
 	buyer.Functions.Notify(pet.breed.." purchased. Make sure to buy a whistle", 'success', 5000)
 end)
 
-RegisterNetEvent('frudy-pets:server:syncFromServer', function()
+RegisterNetEvent('frudy_pets:server:syncFromServer', function()
     local src = source
     local player = QBCore.Functions.GetPlayer(src)
     if (not player) then return end
@@ -179,20 +179,20 @@ RegisterNetEvent('frudy-pets:server:syncFromServer', function()
         local ownerCid = petObj.owner
         if (ownerCid) and (PlayerPets[ownerCid]) and (PlayerPets[ownerCid][petId]) then
             local petData = PlayerPets[ownerCid][petId]
-            TriggerClientEvent("frudy-pets:client:petSpawned", src, petId, petData)
+            TriggerClientEvent("frudy_pets:client:petSpawned", src, petId, petData)
         end
     end
 end)
 
-lib.callback.register("frudy-pets:server:GetPetPrices", function()
+lib.callback.register("frudy_pets:server:GetPetPrices", function()
 	return PetPrices()
 end)
 
-lib.callback.register("frudy-pets:server:GetPets", function()
+lib.callback.register("frudy_pets:server:GetPets", function()
 	return PetData.Pets
 end)
 
-lib.callback.register('frudy-pets:server:GetPlayerPets', function(source, cid)
+lib.callback.register('frudy_pets:server:GetPlayerPets', function(source, cid)
 	if (not PlayerPets[cid]) then
 		local r = MySQL.query.await('SELECT * FROM player_pets WHERE owner = ?', {cid})
 		local pets = {}

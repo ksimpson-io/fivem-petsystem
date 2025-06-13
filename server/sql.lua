@@ -33,7 +33,7 @@ CreateThread(function()
 
         if exists then
             MySQL.query.await(("ALTER TABLE player_pets CHANGE `%s` `%s` %s"):format(old, data.new, data.type))
-            print(("[frudy-pets] Renamed column `%s` to `%s`"):format(old, data.new))
+            print(("[frudy_pets] Renamed column `%s` to `%s`"):format(old, data.new))
         end
     end
 
@@ -47,11 +47,11 @@ CreateThread(function()
         if not result then
             -- Column is missing
             MySQL.query.await(("ALTER TABLE player_pets ADD `%s` %s"):format(col, colType))
-            print(("[frudy-pets] Added missing column `%s`"):format(col))
+            print(("[frudy_pets] Added missing column `%s`"):format(col))
         elseif not result.COLUMN_TYPE:upper():find(colType:match("^%w+"):upper()) then
             -- Column exists but has wrong type
             MySQL.query.await(("ALTER TABLE player_pets MODIFY `%s` %s"):format(col, colType))
-            print(("[frudy-pets] Updated type of column `%s` to `%s`"):format(col, colType))
+            print(("[frudy_pets] Updated type of column `%s` to `%s`"):format(col, colType))
         end
     end
 
@@ -69,10 +69,10 @@ CreateThread(function()
             fallbackModel, pet.id
         })
 
-        print(("[frudy-pets] Set model '%s' for pet id %s (petid: %s)"):format(
+        print(("[frudy_pets] Set model '%s' for pet id %s (petid: %s)"):format(
             fallbackModel, pet.id, pet.petid or "N/A"
         ))
     end
 
-    print("[frudy-pets] Migration complete")
+    print("[frudy_pets] Migration complete")
 end)

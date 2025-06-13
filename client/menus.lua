@@ -108,7 +108,7 @@ VetMenu = function()
 		vetmenu[#vetmenu + 1] = {
 			title = icon.." | "..v.name,
 			description = health .. " | $" .. FormatNumber(price),
-			onSelect = function() TriggerServerEvent("frudy-pets:server:healPet", petId, 100) end,
+			onSelect = function() TriggerServerEvent("frudy_pets:server:healPet", petId, 100) end,
 		}
 	end
 
@@ -119,7 +119,7 @@ end
 
 BuyPetMenu = function()
 	PlayerData = QBCore.Functions.GetPlayerData()
-	local prices = lib.callback.await("frudy-pets:server:GetPetPrices", false)
+	local prices = lib.callback.await("frudy_pets:server:GetPetPrices", false)
 	local petmenu = {}
 
 	petmenu[#petmenu+1] = {
@@ -180,7 +180,7 @@ BuyPetInput = function(petCode)
     local payment = validPayment(menu)
     if (not payment) then return end
 
-	TriggerServerEvent("frudy-pets:server:buyPet", payment, petCode)
+	TriggerServerEvent("frudy_pets:server:buyPet", payment, petCode)
 end
 
 ---@param name table | nil
@@ -206,9 +206,9 @@ RenameInput = function(petId)
 	local newName = validName(menu)
 	if (not newName) then return end
 
-	TriggerServerEvent("frudy-pets:server:renamePet", petId, newName)
+	TriggerServerEvent("frudy_pets:server:renamePet", petId, newName)
 end
 
-RegisterNetEvent("frudy-pets:client:petsMenu", function()
+RegisterNetEvent("frudy_pets:client:petsMenu", function()
 	OwnedPetsMenu()
 end)

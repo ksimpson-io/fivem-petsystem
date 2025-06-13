@@ -51,12 +51,12 @@ RegisterNetEvent('QBCore:Client:OnPlayerUnload', function()
     if (not MyPet) then return end
 
 	MyPet:delete()
-	TriggerServerEvent("frudy-pets:server:removePet", MyPet.id)
+	TriggerServerEvent("frudy_pets:server:removePet", MyPet.id)
 end)
 
 RegisterNetEvent('QBCore:Client:OnPlayerLoaded', function()
 	PlayerData = QBCore.Functions.GetPlayerData()
-	TriggerServerEvent("frudy-pets:server:syncFromServer")
+	TriggerServerEvent("frudy_pets:server:syncFromServer")
 end)
 
 RegisterNetEvent('QBCore:Client:EnteredVehicle', function()
@@ -72,7 +72,7 @@ RegisterNetEvent('QBCore:Client:LeftVehicle', function()
 end)
 
 ---@param color string
-RegisterNetEvent('frudy-pets:client:changeCollar', function(color)
+RegisterNetEvent('frudy_pets:client:changeCollar', function(color)
 	if (not MyPet) then return end
 
 	PetAnimal(MyPet.entity)
@@ -80,7 +80,7 @@ RegisterNetEvent('frudy-pets:client:changeCollar', function(color)
 end)
 
 ---@param food number
-RegisterNetEvent('frudy-pets:client:feedPet', function(food)
+RegisterNetEvent('frudy_pets:client:feedPet', function(food)
 	if (not MyPet) then return end
 
 	MyPet:feed(food)
@@ -89,12 +89,12 @@ end)
 ---@param petOwner string
 ---@param petId number
 ---@param petData table
-RegisterNetEvent('frudy-pets:client:petSaved', function(petOwner, petId, petData)
+RegisterNetEvent('frudy_pets:client:petSaved', function(petOwner, petId, petData)
 	PlayerPets[petOwner][petId] = petData
 end)
 
 ---@param petId number
-RegisterNetEvent('frudy-pets:client:petSpawned', function(petId, petCfg)
+RegisterNetEvent('frudy_pets:client:petSpawned', function(petId, petCfg)
 	if (not petId) or (not petCfg) or (not next(petCfg)) or(CurrentPets[petId]) then return end
 
 	CurrentPets[petId] = Pet:new(petCfg)

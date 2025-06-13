@@ -2,7 +2,7 @@ fx_version "cerulean"
 use_experimental_fxv2_oal "yes"
 lua54 "yes"
 game "gta5"
-name "frudy-pets"
+name "frudy_pets"
 version "2.0.0"
 description "A modular pet companion system for FiveM"
 
